@@ -35,7 +35,7 @@ public class Menu {
                 case 0:
                     System.out.println("Gracias por usar el cajero. ¡Adiós!");
                     break;
-                default:
+                default: 
                     System.out.println("Opción inválida");
                     break;
             }
