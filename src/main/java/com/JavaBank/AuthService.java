@@ -28,4 +28,8 @@ public class AuthService {
             System.out.println("El número de cuenta ya existe");
         }
     }
+
+    public Cuenta getCuentaPorNumero(String numeroDeCuenta) {
+        return cuentas.get(numeroDeCuenta);
+    }
 }

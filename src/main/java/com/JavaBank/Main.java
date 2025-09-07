@@ -7,7 +7,9 @@ public class Main {
 
     public static void main(String[] args) {
         AuthService auth = new AuthService();
-        Menu menu = new Menu();
+        TransferenciaService transferenciaService = new TransferenciaService(auth);
+
+        Menu menu = new Menu(auth, transferenciaService);
 
         System.out.println("=== BIENVENIDO AL CAJERO AUTOMÁTICO ===");
         System.out.println("Ingrese su número de cuenta");
