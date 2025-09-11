@@ -9,7 +9,6 @@ public class Transferencia {
     private String cuentaDestino;
     private String nombreDestino;
     private double monto;
-    private String bancoDestino;
     private Moneda moneda;
     private double comision;
     private double montoFinal;
@@ -25,7 +24,6 @@ public class Transferencia {
         this.cuentaDestino = cuentaDestino;
         this.nombreDestino = nombreDestino;
         this.monto = monto;
-        this.bancoDestino = bancoDestino;
         this.moneda = moneda;
         this.comision = comision;
         this.montoFinal = montoFinal;
@@ -35,6 +33,14 @@ public class Transferencia {
 
     public String getNombreOrigen() {
         return nombreOrigen;
+    }
+
+    public void setNombreOrigen(String nombreOrigen) {
+        this.nombreOrigen = nombreOrigen;
+    }
+
+    public void setNombreDestino(String nombreDestino) {
+        this.nombreDestino = nombreDestino;
     }
 
     public String getNombreDestino() {
@@ -103,14 +109,6 @@ public class Transferencia {
 
     public void setMoneda(Moneda moneda) {
         this.moneda = moneda;
-    }
-
-    public String getBancoDestino() {
-        return bancoDestino;
-    }
-
-    public void setBancoDestino(String bancoDestino) {
-        this.bancoDestino = bancoDestino;
     }
 
     @Override

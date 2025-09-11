@@ -1,10 +1,17 @@
 package com.JavaBank;
 
+import java.time.LocalDateTime;
+import java.util.*;
+
+import static java.lang.System.out;
+
 public class Cuenta {
     private String pin;
     private double balance;
     private String numeroCuenta;
     private String titular;
+
+    private List<Movimiento> movimientos = new ArrayList<>();
 
     public Cuenta() {
     }
@@ -52,26 +59,30 @@ public class Cuenta {
         return this.pin.equals(pinIngresado);
     }
 
-    public void checkBalance() {
-        System.out.println("Saldo actual de: " + titular + ": S/. " + balance);
+    public void agregarMovimientos(Movimiento movimiento) {
+        movimientos.add(movimiento);
     }
 
-    public void depositMoney(double monto) {
-        if (monto > 0 ) {
-            balance += monto;
-            System.out.println("Depósito éxitoso: S/." + monto);
-        } else {
-            System.out.println("Monto insuficiente");
+    public void mostrarMovimientos() {
+        for (Movimiento mov: movimientos) {
+            out.println(mov);
         }
     }
 
-    public void withDrawMoney(double monto) {
-        if (monto > 0  && balance >= monto) {
-            balance -= monto;
-        } else if (monto > balance) {
-            System.out.println("Saldo insuficiente.");
-        } else {
-            System.out.println("Monto inválido.");
-        }
+    public void montoTotalDepositos() {
+        double sumAmount  = movimientos.stream()
+                .filter(m -> m.getTipo() == Tipo.DEPOSITO)
+                .mapToDouble(Movimiento::getMonto).
+                sum();
+        System.out.println("Total Deposits: " + sumAmount);
     }
+
+    public void transaccionMontoMayor() {
+        Movimiento highestTransaction = movimientos.stream()
+                .max(Comparator.comparing(Movimiento::getMonto))
+                .orElseThrow(NoSuchElementException::new);
+
+        System.out.println("Transaccion mayor: " + highestTransaction.getTipo() + "monto: " + highestTransaction.getMonto());
+    }
+
 }

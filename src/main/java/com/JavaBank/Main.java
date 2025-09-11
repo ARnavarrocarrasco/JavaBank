@@ -4,12 +4,15 @@ import java.util.Scanner;
 
 public class Main {
     private static Scanner sc = new Scanner(System.in);
+    private static final String LOG_FILE = "transactions.log";
 
     public static void main(String[] args) {
         AuthService auth = new AuthService();
-        TransferenciaService transferenciaService = new TransferenciaService(auth);
+        TransactionLogger transactionLogger = new TransactionLogger(LOG_FILE);
+        CuentaService cuentaService = new CuentaService(auth,  transactionLogger);
+        Calculador calculador = new Calculador();
 
-        Menu menu = new Menu(auth, transferenciaService);
+        Menu menu = new Menu(auth, cuentaService, transactionLogger, calculador);
 
         System.out.println("=== BIENVENIDO AL CAJERO AUTOMÁTICO ===");
         System.out.println("Ingrese su número de cuenta");
